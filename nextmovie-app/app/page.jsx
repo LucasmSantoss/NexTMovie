@@ -8,6 +8,8 @@ import search from "../app/images/search.png";
 
 
 function MoviesRow() {
+
+
   const API_URL = "https://api.themoviedb.org/3";
   const API_KEY = "4f5f43495afcc67e9553f6c684a82f84";
   const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
@@ -85,17 +87,19 @@ function MoviesRow() {
 
   return (
     <div>
-      <div className="bg-slate-300 flex justify-between">
-        <form className="flex p-4" onSubmit={searchMovies}>
+       <h1 className="text-7xl text-center p-5">Next Movie</h1>
+      <div className="flex justify-center items-center">
+       
+        <form className="flex p-4 " onSubmit={searchMovies}>
           <input
-            className="rounded-md"
+            className="rounded-md p-3"
             type="text"
             placeholder="Search Movies"
             onChange={searchMovies}
           />
-          <Image src={search} className="h-5 p-1" />
+          <Image src={search} className="p-2 w-12" />
         </form>
-        <h2 className="text-3xl p-3 ">Trailer Movies</h2>
+       
       </div>
 
       <div className="flex justify-center items-center bg-black p-5 ">
@@ -111,11 +115,11 @@ function MoviesRow() {
                 <>
                   <YouTube
                     videoId={trailer.key}
-                    className="mx-auto p-4"
+                    className=" p-4"
                     containerClassName="youtube-container"
                     opts={{
-                      width: "1000px",
-                      height: "500px",
+                      width: "90%",
+                      height: "60%",
                       playerVars: {
                         autoplay: 1,
                         controls: 0,
@@ -176,9 +180,9 @@ function MoviesRow() {
             }}
           >
             <div className="flex justify-around text-center text-lg font-semibold text-gray-800 p-2">
-              <span>{movie.title}</span>
-              <p className="text-orange-600">⚔{movie.vote_average}</p>
-              <p>{movie.id}</p>
+              <span className="p-1">{movie.title}</span>
+              <p className="text-orange-600 p-1">⚔{movie.vote_average}</p>
+             
             </div>
             <div className="flex items-center justify-center p-2">
               <Image
