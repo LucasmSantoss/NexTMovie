@@ -87,12 +87,12 @@ function MoviesRow() {
 
   return (
     <div>
-       <h1 className="text-7xl text-center p-5">Next Movie</h1>
+       <h1 className="text-9xl text-center p-5  ">Next Movie</h1>
       <div className="flex justify-center items-center">
        
         <form className="flex p-4 " onSubmit={searchMovies}>
           <input
-            className="rounded-md p-3"
+            className="rounded-md p-3 border-2 border-orange-500"
             type="text"
             placeholder="Search Movies"
             onChange={searchMovies}
@@ -103,75 +103,76 @@ function MoviesRow() {
       </div>
 
       <div className="flex justify-center items-center bg-black p-5 ">
-        <main>
-          {movie ? (
-            <div
-              className="bg-cover bg-center h-screen flex flex-col justify-center items-center object-contain"
-              style={{
-                backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-              }}
-            >
-              {playing ? (
-                <>
-                  <YouTube
-                    videoId={trailer.key}
-                    className=" p-4"
-                    containerClassName="youtube-container"
-                    opts={{
-                      width: "90%",
-                      height: "60%",
-                      playerVars: {
-                        autoplay: 1,
-                        controls: 0,
-                        cc_load_policy: 0,
-                        fs: 0,
-                        iv_load_policy: 0,
-                        modestbranding: 0,
-                        rel: 0,
-                        showinfo: 0,
-                      },
-                    }}
-                  />
-                  <button
-                    onClick={() => setPlaying(false)}
-                    className="bg-white text-gray-800 px-4 py-2 rounded-lg"
-                  >
-                    Close
-                  </button>
-                </>
+      <main>
+      {movie ? (
+        <div
+          className="bg-cover border-4 border-orange-200 border-x-orange-500 bg-center h-screen flex flex-col justify-center items-center object-contain relative "
+          style={{
+            backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
+          }}
+        >
+          {playing ? (
+            <>
+              <YouTube
+                videoId={trailer.key}
+                className="youtube-player"
+                containerClassName="youtube-container"
+                opts={{
+                  width: "100%",
+                  height: "100%",
+                  playerVars: {
+                    autoplay: 1,
+                    controls: 0,
+                    cc_load_policy: 0,
+                    fs: 0,
+                    iv_load_policy: 0,
+                    modestbranding: 0,
+                    rel: 0,
+                    showinfo: 0,
+                  },
+                }}
+              />
+              <button
+                onClick={() => setPlaying(false)}
+                className="bg-white text-gray-800 px-4 py-2 rounded-lg"
+                style={{ position: "absolute", top: "20px", right: "20px" }}
+              >
+                Close
+              </button>
+            </>
+          ) : (
+            <div className="mx-auto mb-20 text-center">
+              {trailer ? (
+                <button
+                  className="bg-black border-4 border-orange-200 border-x-orange-500 px-8 py-2 rounded-lg mb-4"
+                  onClick={() => setPlaying(true)}
+                  type="button"
+                >
+                  Play Trailer
+                </button>
               ) : (
-                <div className="mx-auto mb-20 text-center">
-                  {trailer ? (
-                    <button
-                      className="bg-orange-500 text-white px-8 py-2 rounded-lg mb-4"
-                      onClick={() => setPlaying(true)}
-                      type="button"
-                    >
-                      Play Trailer
-                    </button>
-                  ) : (
-                    <p className="text-white mb-4">Sorry, no trailer available</p>
-                  )}
-                  <h1 className="text-white text-3xl font-bold mb-4">
-                    {movie.title}
-                  </h1>
-                  <p
-                    className="text-white text-lg"
-                    style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1.5)" }}
-                  >
-                    {movie.overview}
-                  </p>
-                </div>
+                <p className="text-white mb-4">Sorry, no trailer available</p>
               )}
+              <h1 className="text-white text-3xl font-bold mb-4">
+                {movie.title}
+              </h1>
+              <p
+                className="text-white text-lg"
+                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1.5)" }}
+              >
+                {movie.overview}
+              </p>
             </div>
-          ) : null}
-        </main>
+          )}
+        </div>
+      ) : null}
+    </main>
       </div>
-      <div className="p-2 bg-gradient-to-t from-black to-transparent grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 bg-black">
+      <div className="p-2    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 bg-black">
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="bg-white rounded-lg overflow-hidden shadow-lg"
+            className="bg-white text-black border-4 border-orange-200 border-x-orange-500 rounded-lg overflow-hidden shadow-lg"
             onMouseEnter={() => {
               document.body.style.cursor = "pointer";
             }}
@@ -179,8 +180,8 @@ function MoviesRow() {
               document.body.style.cursor = "auto";
             }}
           >
-            <div className="flex justify-around text-center text-lg font-semibold text-gray-800 p-2">
-              <span className="p-1">{movie.title}</span>
+            <div className="flex justify-around text-center text-lg font-semibold p-2  text-black bg-white">
+              <span className="p-1 ">{movie.title}</span>
               <p className="text-orange-600 p-1">⚔{movie.vote_average}</p>
              
             </div>
